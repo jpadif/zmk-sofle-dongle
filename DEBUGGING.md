@@ -59,3 +59,22 @@ USAGE FAULT
 `reason 0x08` is a BLE connection timeout. Queue or notification failures before
 that line can distinguish a firmware scheduling problem from a link that simply
 stopped exchanging packets.
+
+## No-relay experiment
+
+The no-relay artifacts test whether DYA's custom split event relay blocks the
+peripheral notification queue. They keep Studio enabled on the dongle but set
+`CONFIG_ZMK_SPLIT_RELAY_EVENT=n` on all three devices.
+
+This changes the split GATT service. Do not mix normal and no-relay images:
+
+1. Flash `settings_reset` to the dongle and both halves.
+2. Flash the three matching `*_no_relay` images.
+3. Power on the dongle, then the left and right halves.
+4. Verify typing before opening DYA Studio.
+5. Connect DYA, browse the same settings that previously caused the right-half
+   position queue to fill, and continue typing cross-half words.
+
+DYA keymap editing remains enabled. Runtime settings that depend on event relay,
+including synchronizing idle and sleep settings across the halves, are not
+expected to work in this experiment.
