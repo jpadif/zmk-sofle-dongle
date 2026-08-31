@@ -12,7 +12,7 @@ include:
   - board: nice_nano_v2
     shield: eyelash_sofle_peripheral_right nice_view
     snippet: zmk-usb-logging
-    cmake-args: -DCONFIG_ZMK_LOG_LEVEL_DBG=y -DCONFIG_BT_LOG_LEVEL_DBG=y
+    cmake-args: -DCONFIG_ZMK_LOG_LEVEL_DBG=y
     artifact-name: eyelash_sofle_peripheral_right_debug
   - board: nice_nano_v2
     shield: settings_reset
