@@ -62,9 +62,11 @@ stopped exchanging packets.
 
 ## No-relay experiment
 
-The no-relay artifacts test whether DYA's custom split event relay blocks the
-peripheral notification queue. They keep Studio enabled on the dongle but set
-`CONFIG_ZMK_SPLIT_RELAY_EVENT=n` on all three devices.
+The no-relay artifacts test whether DYA's custom settings and split event relay
+block the peripheral notification queue. They keep Studio enabled on the dongle
+but disable `CONFIG_ZMK_SETTINGS_RPC` and `CONFIG_ZMK_SPLIT_RELAY_EVENT` on all
+three devices. The settings RPC module does not compile without its relay
+feature, so they must be disabled together.
 
 This changes the split GATT service. Do not mix normal and no-relay images:
 
