@@ -9,9 +9,11 @@ Download `eyelash_sofle_peripheral_right_debug` from the GitHub Actions build
 and flash it only to the right half. Keep the normal firmware on the dongle and
 left half.
 
-The debug image enables ZMK and Bluetooth debug output over USB CDC. Running the
-right half from USB can mask battery or regulator problems, so compare it with a
-separate USB-powered run using the normal right-half firmware.
+The debug image enables ZMK debug output over USB CDC. It deliberately leaves
+Zephyr's full Bluetooth-stack debug logging disabled because that volume of log
+traffic can disrupt split key delivery. Running the right half from USB can mask
+battery or regulator problems, so compare it with a separate USB-powered run
+using the normal right-half firmware.
 
 ## Capture setup
 
