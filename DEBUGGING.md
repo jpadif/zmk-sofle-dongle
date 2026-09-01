@@ -80,3 +80,26 @@ This changes the split GATT service. Do not mix normal and no-relay images:
 DYA keymap editing remains enabled. Runtime settings that depend on event relay,
 including synchronizing idle and sleep settings across the halves, are not
 expected to work in this experiment.
+
+## Dongle-free left-central experiment
+
+`eyelash_sofle_central_left_studio` restores the conventional split topology:
+the left half is the central and the right half is its BLE peripheral. The left
+half provides USB/BLE host output and DYA Studio. The image enables split relay
+and the BLE management, runtime input processor, settings RPC, and runtime
+sensor rotate DYA modules.
+
+Changing the split central requires clearing the old split bonds:
+
+1. Turn off the dongle and both halves.
+2. Flash `settings_reset` to the left and right halves.
+3. Flash `eyelash_sofle_central_left_studio` to the left half.
+4. Flash either `eyelash_sofle_peripheral_right` or
+   `eyelash_sofle_peripheral_right_debug` to the right half.
+5. Keep the dongle off. Turn on the left half first, then the right half.
+6. Connect the left half to the computer by USB for direct HID and DYA Studio.
+   The right half may also remain connected by USB when using its debug image,
+   but its key events still travel to the left half over BLE.
+
+To return to dongle mode, reset the split settings again and flash the normal
+dongle, left-peripheral, and right-peripheral artifacts as a matched set.
